@@ -219,7 +219,7 @@ class Filtering:
 
 
 
-img_path = '/home/bhabuk/Desktop/Filtering/naamiiInternship/test_dataset/sphere/image/sphere.nii.gz'
+img_path = '/home/bhabuk/Desktop/Filtering/naamiiInternship/Data_nii/S0819_P200944693_0_CT_5_3_CHEST_ABDOMEN_PELVIS_2.nii.gz'
 
 filter = Filtering(img_path,15)
 
@@ -231,10 +231,16 @@ filter = Filtering(img_path,15)
 # gamma = 3/2
 
 
-filtered_image = filter.GaborFilter(20,np.pi/ 8,8,5/2,0,'mirror',0,True,True,"4_b_2_Impulse_Gabor.nii.gz")
+filtered_image = filter.GaborFilter(5,np.pi/ 5,8,5/2,0,'mirror',0,False,False, None)
 
 
+image = sitk.ReadImage(img_path)
+img_arr = sitk.GetArrayFromImage(image)
 i = 10
+plt.subplot(121)
+plt.imshow(img_arr[i],cmap = 'gray')
+
+plt.subplot(122)
 plt.imshow(filtered_image[i],cmap = 'gray')
 plt.axis('off')
 plt.show()
